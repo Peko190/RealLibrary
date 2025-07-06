@@ -35,26 +35,28 @@ namespace RealLibrary
 
              string newBook = Console.ReadLine();
              string[] newBookData = newBook.Split(',') ;
-             int counter = int.Parse(newBookData[4]);
+             int counter = 0;
+             
  
-              while (counter > 0)
+              while ( true)
               {
-                for (int i = 0; i < newBookData.Length; i++)
-                {
-                    
+               
                     Books book = new Books(0,null,null,null,null,0,0);
+                    
                     book.Title = newBookData[0];
                     book.Author = newBookData[1];
                     book.Year = newBookData[2];
                     book.Genre = newBookData[3];
-                    book.Count = counter;
-                    counter--;
+                    book.Count = int.Parse(newBookData[4]);
+                    book.Id = book.Count - counter;
+                    counter++;
                     BookList.Add(book);
-                }
+                 if(book.Count == counter) { return; }
               }
             }
 
-        /* public static void PrintBooks()
+        // test
+          public static void PrintBooks()
         {
             if (BookList.Count <= 0)
             {
@@ -64,10 +66,10 @@ namespace RealLibrary
 
             foreach (var b in BookList)
             {
-                Console.WriteLine($" {b.Title},  {b.Author}, {b.Year},  {b.Genre},  {b.Count}");
+                Console.WriteLine($" {b.Title},  {b.Author}, {b.Year},  {b.Genre},  {b.Id}");
             }
         }
-        */
+        
 
     }
 }

@@ -11,10 +11,11 @@ namespace RealLibrary
         static void Main(string[] args)
         {
             //test
-          /*  Books book = new Books(0, null, null, null, null, 0, 0);
+            Books book = new Books(0, null, null, null, null, 0, 0);
             book.AddBook();
             Books.PrintBooks();
-            Console.ReadLine(); */
+            
+            Console.ReadLine(); 
         }
     }
 }
