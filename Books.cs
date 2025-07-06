@@ -48,6 +48,7 @@ namespace RealLibrary
                     book.Year = newBookData[2];
                     book.Genre = newBookData[3];
                     book.Count = int.Parse(newBookData[4]);
+                    book.AvbCounter = int.Parse(newBookData[4]);  
                     book.Id = book.Count - counter;
                     counter++;
                     BookList.Add(book);
