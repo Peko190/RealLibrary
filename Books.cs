@@ -11,6 +11,7 @@ namespace RealLibrary
     internal class Books
     {
         public int Id {  get; set; }
+        public static int nextId = 1;
         public string Title { get; set; }
         public string Author { get; set; }
         public string Year { get; set; }
@@ -37,27 +38,28 @@ namespace RealLibrary
 
              string newBook = Console.ReadLine();
              string[] newBookData = newBook.Split(',') ;
-             int counter = 0;
+
+             int a = new Random().Next(0, 10000000) ;
+           
              
  
               while ( true)
               {
                
                     Books book = new Books(0,null,null,null,null,0,0);
-                    
+                   
+
+                    book.Id = a;
                     book.Title = newBookData[0];
                     book.Author = newBookData[1];
                     book.Year = newBookData[2];
                     book.Genre = newBookData[3];
                     book.Count = int.Parse(newBookData[4]);
                     book.AvbCounter = int.Parse(newBookData[4]);  
-                    book.Id = book.Count - counter;
-                    counter++;
-                    BookList.Add(book);
                     
-                  
-                 if(book.Count == counter) { return; }
-              }
+                    BookList.Add(book);
+                return;
+            }
             }
         public string ToCSVString()
         {
@@ -73,45 +75,45 @@ namespace RealLibrary
         }
         public static void ShowBooks()
         {
-            ListForViewers();
-            Console.WriteLine("\n======== Books ===========");
+            //ListForViewers();
+            Console.WriteLine("\n======== Books ==========");
            
 
           
-            foreach (Books book in ViewBooks)
+            foreach (Books book in BookList)
             {
                 Console.WriteLine(book.Info());
                
             }
         }
 
-       public static void ListForViewers() //nachi ideqta mi e da ima list kojto pri razpechatvane da pokazva samo zaglavie,avtor,godina,janr,count,avbCounter                                  
-        {                                           //bez da pokazva vsqka kniga s razlicno id a samo kolko broq ima ot dadena kniga
+      // public static void ListForViewers() //nachi ideqta mi e da ima list kojto pri razpechatvane da pokazva samo zaglavie,avtor,godina,janr,count,avbCounter                                  
+       // {                                           //bez da pokazva vsqka kniga s razlicno id a samo kolko broq ima ot dadena kniga
                                                     //inache informaciqta she da vadim ot drugiq spisak ,naprimer kato vzimash kniga
 
             // List<Books> viewBooks =new List<Books>(); //- tova e public static,da ne se chudish kade e ,gore e :D
 
-            ViewBooks.Clear();
-            for (int i = 1; i < BookList.Count; i++) 
-            {
+          //  ViewBooks.Clear();
+          //  for (int i = 1; i < BookList.Count; i++) 
+          //  {
                 
                 
-                    if (BookList[i].Title == BookList[i-1].Title && BookList[i].Author == BookList[i - 1].Author
-                         && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre)
-                    {
-                        continue;
-                    }
-                if (BookList[i] == null) { ViewBooks.Add(BookList[i]);continue; }
-                    ViewBooks.Add(BookList[i]);
+                //    if (BookList[i].Title == BookList[i-1].Title && BookList[i].Author == BookList[i - 1].Author
+                        // && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre)
+                //    {
+                   //     continue;
+                   // }
+              //  if (BookList[i] == null) { ViewBooks.Add(BookList[i]);continue; }
+                  //  ViewBooks.Add(BookList[i]);
                 
-            }
-        }
+           // }
+       // }
 
      
 
         public static void PrintBooksBy () //tuka pisheh 1,2,3,4 za da ti gi printita po  zaglavie,avtor,godina,janr
         {
-            ListForViewers();
+            //ListForViewers();
 
             Console.WriteLine("Сортирай книгите според:");
             Console.WriteLine("1 - заглавие");
