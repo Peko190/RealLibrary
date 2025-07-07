@@ -67,18 +67,18 @@ namespace RealLibrary
         }
         public string Info()
         {
-            string csvInfo = $"{Id}, title{Title}, author{Author}, Year{Year}, Genre{Genre},Count{Count},AvbCounter{AvbCounter} ";
+            string csvInfo = $" title {Title}, author {Author}, Year {Year}, Genre {Genre},Count {Count},AvbCounter {AvbCounter} ";
             
             return csvInfo;
         }
         public static void ShowBooks()
         {
-            
+            ListForViewers();
             Console.WriteLine("\n======== Books ===========");
            
 
           
-            foreach (Books book in BookList)
+            foreach (Books book in ViewBooks)
             {
                 Console.WriteLine(book.Info());
                
@@ -93,26 +93,21 @@ namespace RealLibrary
 
             ViewBooks.Clear();
             for (int i = 1; i < BookList.Count; i++) 
-            { 
-              if (BookList[i].Title == BookList[i-1].Title &&  BookList[i].Author == BookList[i-1].Author 
-                  && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre) 
-              { 
-                    continue;
-              }
-                ViewBooks.Add(BookList[i]);
-
-            }
-        }
-
-        public static void PrintBooks()
-        {
-            ListForViewers();
-            foreach (Books book in BookList) 
             {
-                Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                
+                
+                    if (BookList[i].Title == BookList[i-1].Title && BookList[i].Author == BookList[i - 1].Author
+                         && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre)
+                    {
+                        continue;
+                    }
+                if (BookList[i] == null) { ViewBooks.Add(BookList[i]);continue; }
+                    ViewBooks.Add(BookList[i]);
+                
             }
-
         }
+
+     
 
         public static void PrintBooksBy () //tuka pisheh 1,2,3,4 za da ti gi printita po  zaglavie,avtor,godina,janr
         {
