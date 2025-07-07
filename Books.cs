@@ -18,6 +18,7 @@ namespace RealLibrary
         public int Count { get; set; }
         public int AvbCounter { get; set; }
         public static List<Books> BookList = new List<Books>();
+        public static List<Books> ViewBooks = new List<Books>();
 
         public Books(int id, string title, string author, string year, string genre, int count, int avbCounter)
         {
@@ -29,7 +30,7 @@ namespace RealLibrary
             Count = count;
             AvbCounter = avbCounter;
         }
-            public void AddBook()
+            public static void AddBook()
              { 
              Console.WriteLine(" Напиши следните данни за книгата отделени с запетайки:  ");
              Console.WriteLine("Заглавие на книгата, Автор, Година на издаване, Жанр, Брой копия от книгата");
@@ -82,21 +83,99 @@ namespace RealLibrary
             }
         }
 
-        // test
-        /*  public static void PrintBooks()
-        {
-            if (BookList.Count <= 0)
-            {
-                Console.WriteLine("Няма добавени книги.");
-                return;
-            }
+       public static void ListForViewers() //nachi ideqta mi e da ima list kojto pri razpechatvane da pokazva samo zaglavie,avtor,godina,janr,count,avbCounter                                  
+        {                                           //bez da pokazva vsqka kniga s razlicno id a samo kolko broq ima ot dadena kniga
+                                                    //inache informaciqta she da vadim ot drugiq spisak ,naprimer kato vzimash kniga
 
-            foreach (var b in BookList)
-            {
-                Console.WriteLine($" {b.Title},  {b.Author}, {b.Year},  {b.Genre},  {b.Id}");
+            // List<Books> viewBooks =new List<Books>(); //- tova e public static,da ne se chudish kade e ,gore e :D
+
+            ViewBooks.Clear();
+            for (int i = 1; i < ViewBooks.Count; i++) 
+            { 
+              if (BookList[i].Title == BookList[i-1].Title &&  BookList[i].Author == BookList[i-1].Author 
+                  && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre) 
+              { 
+                    continue;
+              }
+                ViewBooks.Add(BookList[i]);
+
             }
         }
-        */
+
+        public static void PrintBooks()
+        {
+            ListForViewers();
+            foreach (Books book in BookList) 
+            {
+                Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+            }
+
+        }
+
+        public static void PrintBooksBy (int i) //tuka pisheh 1,2,3,4 za da ti gi printita po  zaglavie,avtor,godina,janr
+        {
+            ListForViewers();
+
+            if (i == 1) 
+            {
+                Console.WriteLine( "Въведете заглавие според което искате да филтрирате книгите:" );
+                string wantedTitle = Console.ReadLine();
+                foreach (Books book in ViewBooks) 
+                {
+                    if (book.Title == wantedTitle)
+                       
+                    {
+                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                    }
+                }
+            
+            }
+
+            if (i == 2)
+            {
+                Console.WriteLine("Въведете автор според който искате да филтрирате книгите:");
+                string wantedAuthor = Console.ReadLine();
+                foreach (Books book in ViewBooks)
+                {
+                    if (book.Title == wantedAuthor)
+
+                    {
+                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                    }
+                }
+
+            }
+
+            if (i == 3)
+            {
+                Console.WriteLine("Въведете година според която искате да филтрирате книгите:");
+                string wantedYear = Console.ReadLine();
+                foreach (Books book in ViewBooks)
+                {
+                    if (book.Title == wantedYear)
+
+                    {
+                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                    }
+                }
+
+            }
+
+            if (i == 4)
+            {
+                Console.WriteLine("Въведете жанр според който искате да филтрирате книгите:");
+                string wantedGenre = Console.ReadLine();
+                foreach (Books book in ViewBooks)
+                {
+                    if (book.Title == wantedGenre)
+
+                    {
+                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                    }
+                }
+
+            }
+        }
 
     }
 }
