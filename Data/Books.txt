@@ -1,1 +1,10 @@
 ID,Title,Author,Year,Genre,Count,AvbCounter
+5,nigga , niger,1669,cherna toqga,5,5
+4,nigga , niger,1669,cherna toqga,5,5
+3,nigga , niger,1669,cherna toqga,5,5
+2,nigga , niger,1669,cherna toqga,5,5
+1,nigga , niger,1669,cherna toqga,5,5
+4,Да убиеш присмехулник, Харпър Лий, 1960, драма,4,4
+3,Да убиеш присмехулник, Харпър Лий, 1960, драма,4,4
+2,Да убиеш присмехулник, Харпър Лий, 1960, драма,4,4
+1,Да убиеш присмехулник, Харпър Лий, 1960, драма,4,4

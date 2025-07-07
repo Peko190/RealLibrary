@@ -54,6 +54,8 @@ namespace RealLibrary
                     book.Id = book.Count - counter;
                     counter++;
                     BookList.Add(book);
+                    
+                  
                  if(book.Count == counter) { return; }
               }
             }
@@ -90,7 +92,7 @@ namespace RealLibrary
             // List<Books> viewBooks =new List<Books>(); //- tova e public static,da ne se chudish kade e ,gore e :D
 
             ViewBooks.Clear();
-            for (int i = 1; i < ViewBooks.Count; i++) 
+            for (int i = 1; i < BookList.Count; i++) 
             { 
               if (BookList[i].Title == BookList[i-1].Title &&  BookList[i].Author == BookList[i-1].Author 
                   && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre) 
@@ -112,9 +114,16 @@ namespace RealLibrary
 
         }
 
-        public static void PrintBooksBy (int i) //tuka pisheh 1,2,3,4 za da ti gi printita po  zaglavie,avtor,godina,janr
+        public static void PrintBooksBy () //tuka pisheh 1,2,3,4 za da ti gi printita po  zaglavie,avtor,godina,janr
         {
             ListForViewers();
+
+            Console.WriteLine("Сортирай книгите според:");
+            Console.WriteLine("1 - заглавие");
+            Console.WriteLine("2 - автор");
+            Console.WriteLine("3 - година");
+            Console.WriteLine("4 - жанр ");
+            int i = int.Parse(Console.ReadLine());
 
             if (i == 1) 
             {
