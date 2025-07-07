@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RealLibrary
 {
@@ -55,6 +56,31 @@ namespace RealLibrary
                  if(book.Count == counter) { return; }
               }
             }
+        public string ToCSVString()
+        {
+            string csvInfo = $"{Id},{Title},{Author},{Year},{Genre},{Count},{AvbCounter}";
+
+            return csvInfo;
+        }
+        public string Info()
+        {
+            string csvInfo = $"{Id}, title{Title}, author{Author}, Year{Year}, Genre{Genre},Count{Count},AvbCounter{AvbCounter} ";
+            
+            return csvInfo;
+        }
+        public static void ShowBooks()
+        {
+            
+            Console.WriteLine("\n======== Books ===========");
+           
+
+          
+            foreach (Books book in BookList)
+            {
+                Console.WriteLine(book.Info());
+               
+            }
+        }
 
         // test
         /*  public static void PrintBooks()
