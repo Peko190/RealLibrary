@@ -12,7 +12,7 @@ namespace RealLibrary
     { 
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;//imam problemi s encodiranate(zaobikalqne na problema e tva)
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Books.BookList = Data.Load();
 
