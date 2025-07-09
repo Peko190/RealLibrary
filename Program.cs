@@ -19,20 +19,19 @@ namespace RealLibrary
             while(true)
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("===============");
+                Console.WriteLine("===================================");
                 Console.WriteLine("Избери опция:");
-                Console.WriteLine("===============");
+                Console.WriteLine("===================================");
                 Console.WriteLine("1 - Добива книга ");
                 Console.WriteLine("2 - Наеми/Върни книга ");
                 Console.WriteLine("3 - Покажи всички книги");
                 Console.WriteLine("4 - Филтрирай и покажи всички вкиги");
                 Console.WriteLine("5 - Излез");
+                Console.WriteLine("===================================");
                 Console.ResetColor();
-                Console.Write("въведи число:");
-
                 Console.ForegroundColor = ConsoleColor.Red;
                 int option = int.Parse(Console.ReadLine());
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.ForegroundColor = ConsoleColor.Green;
 
                 switch (option)
                 {

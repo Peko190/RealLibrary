@@ -32,13 +32,13 @@ namespace RealLibrary
         }
             public static void AddBook()
              { 
-             Console.WriteLine(" Напиши следните данни за книгата отделени с запетайки:  ");
+             Console.WriteLine("Напиши следните данни за книгата отделени с запетайки:  ");
              Console.WriteLine("Заглавие на книгата, Автор, Година на издаване, Жанр, Брой копия от книгата");
 
              string newBook = Console.ReadLine();
              string[] newBookData = newBook.Split(',') ;
 
-             int a = new Random().Next(0, 10000000) ;
+             int a = new Random().Next(0, 1000000) ;
            
              
  
@@ -57,8 +57,11 @@ namespace RealLibrary
                     book.AvbCounter = int.Parse(newBookData[4]);  
                     
                     BookList.Add(book);
+                Console.WriteLine("Добавихте нова книга!");
                 return;
+                
             }
+              
             }
         public string ToCSVString()
         {
@@ -68,16 +71,16 @@ namespace RealLibrary
         }
         public string Info()
         {
-            string csvInfo = $" Заглавие: {Title}, Автор: {Author}, {Year} г., Жанр: {Genre},Обща бройка: {Count},Налична бройка: {AvbCounter}";
+           
+            string csvInfo = $" Заглавие: {Title,-35} Автор: {Author,-20} {Year,10} г. Жанр: {Genre,-20}Обща бройка: {Count,-7}Налична бройка: {AvbCounter,-8}";
             
             return csvInfo;
         }
         public static void ShowBooks()
         {
-            //ListForViewers();
-            Console.WriteLine("\n======== Books ==========");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n========================================================================= Books =========================================================================");
            
-
           
             foreach (Books book in BookList)
             {
@@ -86,41 +89,18 @@ namespace RealLibrary
             }
         }
 
-      // public static void ListForViewers() //nachi ideqta mi e da ima list kojto pri razpechatvane da pokazva samo zaglavie,avtor,godina,janr,count,avbCounter                                  
-       // {                                           //bez da pokazva vsqka kniga s razlicno id a samo kolko broq ima ot dadena kniga
-                                                    //inache informaciqta she da vadim ot drugiq spisak ,naprimer kato vzimash kniga
-
-            // List<Books> viewBooks =new List<Books>(); //- tova e public static,da ne se chudish kade e ,gore e :D
-
-          //  ViewBooks.Clear();
-          //  for (int i = 1; i < BookList.Count; i++) 
-          //  {
-                
-                
-                //    if (BookList[i].Title == BookList[i-1].Title && BookList[i].Author == BookList[i - 1].Author
-                        // && BookList[i].Year == BookList[i - 1].Year && BookList[i].Genre == BookList[i - 1].Genre)
-                //    {
-                   //     continue;
-                   // }
-              //  if (BookList[i] == null) { ViewBooks.Add(BookList[i]);continue; }
-                  //  ViewBooks.Add(BookList[i]);
-                
-           // }
-       // }
-
-     
 
         public static void PrintBooksBy () //niga tui ne backa
         {
             //ListForViewers();
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("=======================");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("========================");
             Console.WriteLine("Сортирай книгите според:");
             Console.WriteLine("1 - заглавие");
             Console.WriteLine("2 - автор");
             Console.WriteLine("3 - година");
             Console.WriteLine("4 - жанр ");
-            Console.WriteLine("=======================");
+            Console.WriteLine("========================");
             Console.ResetColor();
             Console.Write("Въведи число:");
             int i = int.Parse(Console.ReadLine());
@@ -194,16 +174,22 @@ namespace RealLibrary
             {
                 case 1: Console.WriteLine("Избери книга");
                     string wantedbook = Console.ReadLine();
-                    foreach (Books book in BookList)//ne backa 
+                    foreach (Books book in BookList)
                     {
-                        if (book.Title == wantedbook)
+                        if (book.AvbCounter <= book.Count && book.AvbCounter > 0)
                         {
-                            Console.WriteLine("Наехте книгата");
-                            book.AvbCounter--;
-                            return;
+                            if (book.Title == wantedbook)
+                            {
+                                Console.WriteLine("Наехте книгата");
+                                book.AvbCounter--;
+                                return;
+                            }
+   
                         }
+
                     }
-                    Console.WriteLine("Няма такава книга");
+
+                    Console.WriteLine("няма наличие на тази книга в момента");
                     break;
 
                 case 2:
