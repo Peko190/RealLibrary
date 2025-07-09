@@ -20,13 +20,13 @@ namespace RealLibrary
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("===================================");
-                Console.WriteLine("Избери опция:");
+                Console.WriteLine(" Избери опция:");
                 Console.WriteLine("===================================");
-                Console.WriteLine("1 - Добива книга ");
-                Console.WriteLine("2 - Наеми/Върни книга ");
-                Console.WriteLine("3 - Покажи всички книги");
-                Console.WriteLine("4 - Филтрирай и покажи всички вкиги");
-                Console.WriteLine("5 - Излез");
+                Console.WriteLine(" 1 - Добива книга ");
+                Console.WriteLine(" 2 - Наеми/Върни книга ");
+                Console.WriteLine(" 3 - Покажи всички книги");
+                Console.WriteLine(" 4 - Филтрирай и покажи всички вкиги");
+                Console.WriteLine(" 5 - Излез");
                 Console.WriteLine("===================================");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -37,7 +37,7 @@ namespace RealLibrary
                 {
                     case 1: Books.AddBook(); break;
 
-                    case 2: Books.RentBook(); break;
+                    case 2: Books.RentAndReturnBook(); break;
 
                     case 3: Books.ShowBooks();break;
 

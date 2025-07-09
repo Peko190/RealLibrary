@@ -18,7 +18,7 @@ namespace RealLibrary
         public int Count { get; set; }
         public int AvbCounter { get; set; }
         public static List<Books> BookList = new List<Books>();
-        public static List<Books> ViewBooks = new List<Books>();
+        //public static List<Books> ViewBooks = new List<Books>();
 
         public Books(int id, string title, string author, string year, string genre, int count, int avbCounter)
         {
@@ -102,70 +102,111 @@ namespace RealLibrary
             Console.WriteLine("4 - жанр ");
             Console.WriteLine("========================");
             Console.ResetColor();
-            Console.Write("Въведи число:");
+            Console.Write("Въведи число: ");
+            Console.ForegroundColor= ConsoleColor.Red;
             int i = int.Parse(Console.ReadLine());
+            Console.ForegroundColor = ConsoleColor.Magenta;
 
             if (i == 1) 
             {
+                bool b = false;
                 Console.WriteLine( "Въведете заглавие според което искате да филтрирате книгите:" );
+                Console.ForegroundColor = ConsoleColor.Red;
                 string wantedTitle = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 foreach (Books book in BookList) 
                 {
+                    
                     if (book.Title == wantedTitle)
                        
                     {
-                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($" Заглавие: {book.Title,-35} Автор: {book.Author,-20} {book.Year,10} г. Жанр: " +
+                            $"{book.Genre,-20}Обща бройка: {book.Count,-7}Налична бройка: {book.AvbCounter,-8}");
+                        b= true;
                     }
                 }
-            
+                if(b ==false) 
+                {
+                    Console.WriteLine("Няма намерени книги с това заглавие");
+                }
+               
             }
 
             if (i == 2)
             {
+                bool b = false;
                 Console.WriteLine("Въведете автор според който искате да филтрирате книгите:");
+                Console.ForegroundColor = ConsoleColor.Red;
                 string wantedAuthor = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 foreach (Books book in BookList)
                 {
                     if (book.Author == wantedAuthor)
 
                     {
-                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($" Заглавие: {book.Title,-35} Автор: {book.Author,-20} {book.Year,10} г. Жанр: " +
+                             $"{book.Genre,-20}Обща бройка: {book.Count,-7}Налична бройка: {book.AvbCounter,-8}");
+                        b = true;
                     }
                 }
-
+                if (b == false)
+                {
+                    Console.WriteLine("Няма намерени книги с този автор");
+                }
             }
 
             if (i == 3)
             {
+                bool b = false;
                 Console.WriteLine("Въведете година според която искате да филтрирате книгите:");
+                Console.ForegroundColor = ConsoleColor.Red;
                 string wantedYear = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 foreach (Books book in BookList)
                 {
                     if (book.Year == wantedYear)
 
                     {
-                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($" Заглавие: {book.Title,-35} Автор: {book.Author,-20} {book.Year,10} г. Жанр: " +
+                             $"{book.Genre,-20}Обща бройка: {book.Count,-7}Налична бройка: {book.AvbCounter,-8}");
+                        b = true;
                     }
                 }
-
+                if (b == false)
+                {
+                    Console.WriteLine("Няма намерени книги с тази година");
+                }
+                
             }
 
             if (i == 4)
             {
+                bool b = false;
                 Console.WriteLine("Въведете жанр според който искате да филтрирате книгите:");
+                Console.ForegroundColor = ConsoleColor.Red;
                 string wantedGenre = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 foreach (Books book in BookList)
                 {
                     if (book.Genre == wantedGenre)
 
                     {
-                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($"Заглавие: {book.Title,-35} Автор: {book.Author,-20} {book.Year,10} г. Жанр: " +
+                             $"{book.Genre,-20}Обща бройка: {book.Count,-7}Налична бройка: {book.AvbCounter,-8}");
+                        b = true;
+                    }
+                    if (b == false)
+                    {
+                        Console.WriteLine("Няма намерени книги с този жанр");
                     }
                 }
 
             }
         }
-        public static void RentBook()
+        public static void RentAndReturnBook()
         {
             Console.WriteLine("За наемане 1, за връщане на книга 2, за преглед на книгите 3 , ");
             int choice = int.Parse(Console.ReadLine());
