@@ -68,7 +68,7 @@ namespace RealLibrary
         }
         public string Info()
         {
-            string csvInfo = $" title {Title}, author {Author}, Year {Year}, Genre {Genre},Count {Count},AvbCounter {AvbCounter} ";
+            string csvInfo = $" Заглавие: {Title}, Автор: {Author}, {Year} г., Жанр: {Genre},Обща бройка: {Count},Налична бройка: {AvbCounter}";
             
             return csvInfo;
         }
@@ -113,24 +113,28 @@ namespace RealLibrary
         public static void PrintBooksBy () //niga tui ne backa
         {
             //ListForViewers();
-
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("=======================");
             Console.WriteLine("Сортирай книгите според:");
             Console.WriteLine("1 - заглавие");
             Console.WriteLine("2 - автор");
             Console.WriteLine("3 - година");
             Console.WriteLine("4 - жанр ");
+            Console.WriteLine("=======================");
+            Console.ResetColor();
+            Console.Write("Въведи число:");
             int i = int.Parse(Console.ReadLine());
 
             if (i == 1) 
             {
                 Console.WriteLine( "Въведете заглавие според което искате да филтрирате книгите:" );
                 string wantedTitle = Console.ReadLine();
-                foreach (Books book in ViewBooks) 
+                foreach (Books book in BookList) 
                 {
                     if (book.Title == wantedTitle)
                        
                     {
-                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
                     }
                 }
             
@@ -140,12 +144,12 @@ namespace RealLibrary
             {
                 Console.WriteLine("Въведете автор според който искате да филтрирате книгите:");
                 string wantedAuthor = Console.ReadLine();
-                foreach (Books book in ViewBooks)
+                foreach (Books book in BookList)
                 {
                     if (book.Author == wantedAuthor)
 
                     {
-                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
                     }
                 }
 
@@ -155,12 +159,12 @@ namespace RealLibrary
             {
                 Console.WriteLine("Въведете година според която искате да филтрирате книгите:");
                 string wantedYear = Console.ReadLine();
-                foreach (Books book in ViewBooks)
+                foreach (Books book in BookList)
                 {
                     if (book.Year == wantedYear)
 
                     {
-                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
                     }
                 }
 
@@ -170,12 +174,12 @@ namespace RealLibrary
             {
                 Console.WriteLine("Въведете жанр според който искате да филтрирате книгите:");
                 string wantedGenre = Console.ReadLine();
-                foreach (Books book in ViewBooks)
+                foreach (Books book in BookList)
                 {
                     if (book.Genre == wantedGenre)
 
                     {
-                        Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
+                        Console.WriteLine($"{book.Title} {book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
                     }
                 }
 
@@ -183,7 +187,7 @@ namespace RealLibrary
         }
         public static void RentBook()
         {
-            Console.WriteLine("За наемане 1, за преглед на книгите 2 ");
+            Console.WriteLine("За наемане 1, за връщане на книга 2, за преглед на книгите 3 , ");
             int choice = int.Parse(Console.ReadLine());
             
             switch(choice)
@@ -194,12 +198,32 @@ namespace RealLibrary
                     {
                         if (book.Title == wantedbook)
                         {
-                            Console.WriteLine("Взехте книгата");
+                            Console.WriteLine("Наехте книгата");
                             book.AvbCounter--;
+                            return;
                         }
                     }
+                    Console.WriteLine("Няма такава книга");
                     break;
-                case 2: Books.ShowBooks(); break;
+
+                case 2:
+                    Console.WriteLine("Коя книга връщаш?");
+                    string returnedbook = Console.ReadLine();
+                    foreach (Books book in BookList)  
+                    {
+                        if (book.AvbCounter < book.Count)
+                        {
+                            if (book.Title == returnedbook)
+                            {
+                                Console.WriteLine("Върнахте книгата");
+                                book.AvbCounter++;
+                                return;
+                            }
+                        }
+                    }
+                    Console.WriteLine("Няма данни за наета такава книга"); break;
+
+                case 3: Books.ShowBooks(); break;
             }
         }
 
