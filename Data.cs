@@ -39,7 +39,7 @@ namespace RealLibrary
         {
             List<string> lines = new List<string>();
             lines.Add("ID,Title,Author,Year,Genre,Count,AvbCounter");
-            foreach (Books book in Books.BookList) // ne sam siguren dali toq e pravilniq list v koito se savea
+            foreach (Books book in Books.BookList) 
             {
                 string line = book.ToCSVString();
                 lines.Add(line);

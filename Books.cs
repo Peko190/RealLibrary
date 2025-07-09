@@ -11,7 +11,6 @@ namespace RealLibrary
     internal class Books
     {
         public int Id {  get; set; }
-        public static int nextId = 1;
         public string Title { get; set; }
         public string Author { get; set; }
         public string Year { get; set; }
@@ -111,7 +110,7 @@ namespace RealLibrary
 
      
 
-        public static void PrintBooksBy () //tuka pisheh 1,2,3,4 za da ti gi printita po  zaglavie,avtor,godina,janr
+        public static void PrintBooksBy () //niga tui ne backa
         {
             //ListForViewers();
 
@@ -143,7 +142,7 @@ namespace RealLibrary
                 string wantedAuthor = Console.ReadLine();
                 foreach (Books book in ViewBooks)
                 {
-                    if (book.Title == wantedAuthor)
+                    if (book.Author == wantedAuthor)
 
                     {
                         Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
@@ -158,7 +157,7 @@ namespace RealLibrary
                 string wantedYear = Console.ReadLine();
                 foreach (Books book in ViewBooks)
                 {
-                    if (book.Title == wantedYear)
+                    if (book.Year == wantedYear)
 
                     {
                         Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
@@ -173,13 +172,34 @@ namespace RealLibrary
                 string wantedGenre = Console.ReadLine();
                 foreach (Books book in ViewBooks)
                 {
-                    if (book.Title == wantedGenre)
+                    if (book.Genre == wantedGenre)
 
                     {
                         Console.WriteLine($"{book.Title}{book.Author} {book.Year} {book.Genre} Бройки:{book.Count} Налични бройки:{book.AvbCounter}");
                     }
                 }
 
+            }
+        }
+        public static void RentBook()
+        {
+            Console.WriteLine("За наемане 1, за преглед на книгите 2 ");
+            int choice = int.Parse(Console.ReadLine());
+            
+            switch(choice)
+            {
+                case 1: Console.WriteLine("Избери книга");
+                    string wantedbook = Console.ReadLine();
+                    foreach (Books book in BookList)//ne backa 
+                    {
+                        if (book.Title == wantedbook)
+                        {
+                            Console.WriteLine("Взехте книгата");
+                            book.AvbCounter--;
+                        }
+                    }
+                    break;
+                case 2: Books.ShowBooks(); break;
             }
         }
 

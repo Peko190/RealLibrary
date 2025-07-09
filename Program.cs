@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace RealLibrary
 {
+    
     internal class Program
     { 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Books.BookList = Data.Load();
 
             while(true)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("===============");
                 Console.WriteLine("Избери опция:");
                 Console.WriteLine("===============");
@@ -24,13 +28,14 @@ namespace RealLibrary
                 Console.WriteLine("4 - Филтрирай и покажи всички вкиги");
                 Console.WriteLine("5 - Излез");
                 Console.Write("въведи число: ");
+                
                 int option = int.Parse(Console.ReadLine());   
 
                 switch (option)
                 {
                     case 1: Books.AddBook(); break;
 
-                    case 2: break;
+                    case 2: Books.RentBook(); break;
 
                     case 3: Books.ShowBooks();break;
 
