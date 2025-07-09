@@ -90,9 +90,9 @@ namespace RealLibrary
         }
 
 
-        public static void PrintBooksBy () //niga tui ne backa
+        public static void PrintBooksBy () 
         {
-            //ListForViewers();
+            
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("========================");
             Console.WriteLine("Сортирай книгите според:");
