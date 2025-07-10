@@ -198,12 +198,12 @@ namespace RealLibrary
                              $"{book.Genre,-20}Обща бройка: {book.Count,-7}Налична бройка: {book.AvbCounter,-8}");
                         b = true;
                     }
-                    if (b == false)
-                    {
-                        Console.WriteLine("Няма намерени книги с този жанр");
-                    }
+                    
                 }
-
+                if (b == false)
+                {
+                    Console.WriteLine("Няма намерени книги с този жанр");
+                }
             }
         }
         public static void RentAndReturnBook()
